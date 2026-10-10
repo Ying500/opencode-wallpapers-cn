@@ -18,21 +18,23 @@ git clone https://github.com/Ying500/opencode-wallpapers-cn.git ~/.config/openco
 
 ## 卸载
 
-在任一会话中运行 `/wallpaper-uninstall`（或在命令面板中执行「卸载壁纸插件」）。它会清除插件保存的全部设置（壁纸选择、活跃度、时段、季节、天气、位置、亮度、随机切换、按项目设置），壁纸随即消失，效果相当于即时停用。
+删除插件目录，然后重启 OpenCode：
 
-运行中的 OpenCode 不会卸载已经加载的插件代码，所以插件目录不会被命令删除，需要你手动清理并重启：
+```sh
+rm -rf ~/.config/opencode/plugins/wallpapers
+```
 
-1. 删除插件目录，例如：
+Windows（PowerShell）：
 
-   ```sh
-   rm -rf ~/.config/opencode/plugins/wallpapers
-   ```
+```powershell
+Remove-Item -Recurse -Force "$env:USERPROFILE\.config\opencode\plugins\wallpapers"
+```
 
-   Windows 上用 `Remove-Item -Recurse -Force "$env:USERPROFILE\.config\opencode\plugins\wallpapers"`。
+若你是通过 `~/.config/opencode/cli.json` 的 `plugins` 绝对路径安装的，同时从该列表中移除对应条目。
 
-2. 如果你是通过 `~/.config/opencode/cli.json` 的 `plugins` 绝对路径安装的，同时从该列表中移除对应条目。
+删除目录即可彻底移除；插件保存的设置（壁纸选择、活跃度、时段、季节、天气、位置、亮度、随机切换、按项目设置）如也想一并清掉，可在删除前先运行 `/wallpaper-uninstall`（或命令面板中的「卸载壁纸插件」），它会清除全部设置并弹出提示。
 
-3. 重启 OpenCode。
+运行中的 OpenCode 不会卸载已经加载的插件代码，所以删完记得重启。
 
 若只是想暂时关掉壁纸而不卸载，运行 `/wallpaper off` 即可，设置会保留。
 
