@@ -30,11 +30,7 @@ Windows（PowerShell）：
 Remove-Item -Recurse -Force "$env:USERPROFILE\.config\opencode\plugins\wallpapers"
 ```
 
-若你是通过 `~/.config/opencode/cli.json` 的 `plugins` 绝对路径安装的，同时从该列表中移除对应条目。
-
-删除目录即可彻底移除；插件保存的设置（壁纸选择、活跃度、时段、季节、天气、位置、亮度、随机切换、按项目设置）如也想一并清掉，可在删除前先运行 `/wallpaper-uninstall`（或命令面板中的「卸载壁纸插件」），它会清除全部设置并弹出提示。
-
-运行中的 OpenCode 不会卸载已经加载的插件代码，所以删完记得重启。
+若你是通过 `~/.config/opencode/cli.json` 的 `plugins` 绝对路径安装的，同时从该列表中移除对应条目。运行中的 OpenCode 不会卸载已经加载的插件代码，所以删完记得重启。
 
 若只是想暂时关掉壁纸而不卸载，运行 `/wallpaper off` 即可，设置会保留。
 
@@ -51,8 +47,6 @@ Remove-Item -Recurse -Force "$env:USERPROFILE\.config\opencode\plugins\wallpaper
 - **按项目**为每个项目目录记住各自的壁纸。在某个项目中挑选之前，它会先沿用全局选择。
 
 使用浅色 OpenCode 主题时，场景会向白色淡化，文字底色也会变成淡色而不是深色。
-
-`/wallpaper` 也接受参数：壁纸 id、`off`、`calm`/`lively`/`teeming`、`day`/`sunset`/`night`/`auto`、某个季节、某种天气、`location <城市或纬度,经度>`、`subtle`/`normal`/`vivid`、`saver`/`smooth`，以及 `uninstall`（清除所有设置，见[卸载](#卸载)）。
 
 ## 壁纸
 
