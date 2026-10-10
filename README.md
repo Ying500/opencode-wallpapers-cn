@@ -16,6 +16,26 @@ git clone https://github.com/Ying500/opencode-wallpapers-cn.git ~/.config/openco
 
 若想克隆到其他地方，请改为在 `~/.config/opencode/cli.json` 的 `plugins` 中加入它的绝对路径。更新时在克隆目录里执行 `git pull` 即可。
 
+## 卸载
+
+在任一会话中运行 `/wallpaper-uninstall`（或在命令面板中执行「卸载壁纸插件」）。它会清除插件保存的全部设置（壁纸选择、活跃度、时段、季节、天气、位置、亮度、随机切换、按项目设置），壁纸随即消失，效果相当于即时停用。
+
+运行中的 OpenCode 不会卸载已经加载的插件代码，所以插件目录不会被命令删除，需要你手动清理并重启：
+
+1. 删除插件目录，例如：
+
+   ```sh
+   rm -rf ~/.config/opencode/plugins/wallpapers
+   ```
+
+   Windows 上用 `Remove-Item -Recurse -Force "$env:USERPROFILE\.config\opencode\plugins\wallpapers"`。
+
+2. 如果你是通过 `~/.config/opencode/cli.json` 的 `plugins` 绝对路径安装的，同时从该列表中移除对应条目。
+
+3. 重启 OpenCode。
+
+若只是想暂时关掉壁纸而不卸载，运行 `/wallpaper off` 即可，设置会保留。
+
 ## 使用
 
 输入 `/wallpaper` 打开壁纸菜单：
@@ -29,6 +49,8 @@ git clone https://github.com/Ying500/opencode-wallpapers-cn.git ~/.config/openco
 - **按项目**为每个项目目录记住各自的壁纸。在某个项目中挑选之前，它会先沿用全局选择。
 
 使用浅色 OpenCode 主题时，场景会向白色淡化，文字底色也会变成淡色而不是深色。
+
+`/wallpaper` 也接受参数：壁纸 id、`off`、`calm`/`lively`/`teeming`、`day`/`sunset`/`night`/`auto`、某个季节、某种天气、`location <城市或纬度,经度>`、`subtle`/`normal`/`vivid`、`saver`/`smooth`，以及 `uninstall`（清除所有设置，见[卸载](#卸载)）。
 
 ## 壁纸
 

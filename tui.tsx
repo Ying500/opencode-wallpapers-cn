@@ -114,6 +114,26 @@ export default Plugin.define({
     const simulated = parseEvents(process.env.WALLPAPER_EVENTS).map((e) => setTimeout(() => engine.react(e.event), e.at * 1000))
 
     const notify = (message: string, variant: "info" | "error" = "info") => context.ui.toast.show({ message, variant })
+    // Clears every stored setting back to a fresh install's defaults.
+    const reset = () =>
+      update((draft) => {
+        draft.wallpaper = ""
+        draft.activity = undefined
+        draft.time = undefined
+        draft.brightness = undefined
+        draft.power = undefined
+        draft.season = undefined
+        draft.weather = undefined
+        draft.location = undefined
+        draft.shuffle = undefined
+        draft.perProject = undefined
+        draft.projects = undefined
+        draft.changed = undefined
+      })
+    // Uninstalling clears this plugin's saved state. A running OpenCode keeps the plugin loaded until it restarts, so the
+    // directory itself has to be removed by hand and OpenCode restarted; the command only explains that (see README).
+    const UNINSTALL_MESSAGE =
+      "已清除全部壁纸设置，插件即时停用。当前 OpenCode 仍在运行——要彻底移除，请删除插件目录（如 ~/.config/opencode/plugins/wallpapers）后重启 OpenCode。详见 README 的「卸载」一节"
     // Applies one /wallpaper argument and says what changed.
     const apply = async (arg: string): Promise<{ message: string; error?: true }> => {
       if (arg === "off") {
@@ -178,6 +198,12 @@ export default Plugin.define({
     const run = async (input?: string) => {
       const arg = input?.trim().toLowerCase()
       if (!arg) return pick()
+      // Uninstall's explanation is long, so it gets a dialog rather than a toast.
+      if (arg === "uninstall") {
+        await reset()
+        await context.ui.dialog.alert({ title: "卸载壁纸", message: UNINSTALL_MESSAGE })
+        return
+      }
       const result = await apply(arg)
       notify(result.message, result.error ? "error" : "info")
     }
@@ -423,7 +449,7 @@ export default Plugin.define({
               id: "wallpapers.choose",
               title: "选择壁纸",
               description:
-                "UI 背后的动态画面。参数：壁纸 id、off、calm、lively、teeming、day、sunset、night、auto、某个季节、某种天气、location <地点>、subtle、normal、vivid、saver、smooth",
+                "UI 背后的动态画面。参数：壁纸 id、off、uninstall、calm、lively、teeming、day、sunset、night、auto、某个季节、某种天气、location <地点>、subtle、normal、vivid、saver、smooth",
               group: "壁纸",
               palette: true,
               slash: { name: "wallpaper", arguments: true },
@@ -435,6 +461,15 @@ export default Plugin.define({
               group: "壁纸",
               palette: true,
               run: () => run("off"),
+            },
+            {
+              id: "wallpapers.uninstall",
+              title: "卸载壁纸插件",
+              description: "清除所有已保存的壁纸设置；删除插件目录并重启 OpenCode 即可彻底移除",
+              group: "壁纸",
+              palette: true,
+              slash: { name: "wallpaper-uninstall" },
+              run: () => run("uninstall"),
             },
             {
               id: "wallpapers.activity",
