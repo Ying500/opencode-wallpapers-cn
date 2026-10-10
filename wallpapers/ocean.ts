@@ -1468,12 +1468,12 @@ function buildRays(seed: number) {
 
 export const ocean: Wallpaper = {
   id: "ocean",
-  name: "Ocean",
-  description: "Deep water, god rays, marine snow, and a whale that drifts past now and then",
+  name: "海洋",
+  description: "深水、光柱、海雪，以及偶尔游过的鲸鱼",
   activity: {
-    calm: "Water, light and the whale",
-    lively: "Adds a fish and an octopus",
-    teeming: "Adds a shark, diver, turtle and kelp",
+    calm: "海水、光线和鲸鱼",
+    lively: "增加一条鱼和一只章鱼",
+    teeming: "增加鲨鱼、潜水员、海龟和海带",
   },
   scrim: {
     day: [

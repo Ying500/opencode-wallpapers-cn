@@ -708,12 +708,12 @@ function buildSurface() {
 
 export const space: Wallpaper = {
   id: "space",
-  name: "Space",
-  description: "A ringed planet turning slowly below a nebula and drifting stars, with a comet now and then",
+  name: "太空",
+  description: "星云和漂移的星辰下方缓缓旋转的带环行星，以及偶尔出现的彗星",
   activity: {
-    calm: "The planet, its rings, a moon and the stars",
-    lively: "Adds an orbiting space station and a satellite",
-    teeming: "Adds asteroids, a floating astronaut and a flying saucer",
+    calm: "行星、它的光环、一颗卫星和群星",
+    lively: "增加一座环绕运行的空间站和一颗人造卫星",
+    teeming: "增加小行星、漂浮的宇航员和飞碟",
   },
   scrim: {
     day: [

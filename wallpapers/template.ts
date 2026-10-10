@@ -201,13 +201,13 @@ class Template extends Canvas {
 const template: Wallpaper = {
   // Lowercase letters, digits and dashes: it is what `/wallpaper <id>` takes.
   id: "template",
-  name: "Template",
-  description: "Rolling hills with a tree under drifting clouds, and a hot-air balloon now and then",
+  name: "模板",
+  description: "连绵的丘陵上有一棵树，头顶飘着云，偶尔还有一个热气球",
   // What each activity level adds, shown in the /wallpaper menu.
   activity: {
-    calm: "Hills, a tree and clouds",
-    lively: "Adds a hot-air balloon",
-    teeming: "Adds birds (fireflies at night)",
+    calm: "丘陵、一棵树和云",
+    lively: "增加一个热气球",
+    teeming: "增加飞鸟（夜晚为萤火虫）",
   },
   // Colors (0-255) the scene fades toward behind text at the top, middle and bottom of the screen: dark, saturated
   // versions of the scene's own colors at those depths.

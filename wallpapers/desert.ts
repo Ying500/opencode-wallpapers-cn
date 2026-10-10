@@ -1023,12 +1023,12 @@ function buildTwigs() {
 
 export const desert: Wallpaper = {
   id: "desert",
-  name: "Desert",
-  description: "Mesas and dunes with a saguaro, a cow skull, and a tumbleweed now and then",
+  name: "沙漠",
+  description: "梅萨台地与沙丘，有仙人柱、牛头骨，以及偶尔滚过的风滚草",
   activity: {
-    calm: "Mesas, a saguaro and a skull",
-    lively: "Adds a soaring eagle (an owl at night) and a rattlesnake",
-    teeming: "Adds vultures (bats at night), a howling coyote and more cacti",
+    calm: "梅萨台地、一株仙人柱和一个头骨",
+    lively: "增加翱翔的鹰（夜晚为猫头鹰）和一条响尾蛇",
+    teeming: "增加秃鹫（夜晚为蝙蝠）、嚎叫的郊狼和更多仙人掌",
   },
   scrim: {
     day: [

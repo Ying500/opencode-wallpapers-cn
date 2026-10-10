@@ -693,12 +693,12 @@ class Beach extends Canvas {
 
 export const beach: Wallpaper = {
   id: "beach",
-  name: "Beach",
-  description: "Waves washing up a sandy beach between swaying palms, with a sailboat on the horizon now and then",
+  name: "海滩",
+  description: "摇曳的棕榈树之间，海浪冲刷着沙滩，地平线上偶尔出现一艘帆船",
   activity: {
-    calm: "Sea, waves, sand and palm trees",
-    lively: "Adds leaping dolphins and seagulls",
-    teeming: "Adds a crab, a surfer, an umbrella and a sandcastle",
+    calm: "大海、海浪、沙滩和棕榈树",
+    lively: "增加跃出水面的海豚和海鸥",
+    teeming: "增加螃蟹、冲浪者、遮阳伞和沙堡",
   },
   scrim: {
     day: [

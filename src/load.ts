@@ -8,11 +8,11 @@ export async function loadWallpapers(modules: unknown, builtin: readonly Wallpap
   const wallpapers: Wallpaper[] = []
   const skipped: string[] = []
   if (modules === undefined) return { wallpapers, skipped }
-  if (!Array.isArray(modules)) return { wallpapers, skipped: ["the wallpapers option must be a list of module paths or package names"] }
+  if (!Array.isArray(modules)) return { wallpapers, skipped: ["wallpapers 选项必须是一个模块路径或包名列表"] }
   const taken = new Set(builtin.map((w) => w.id))
   for (const spec of modules) {
     if (typeof spec !== "string" || spec.startsWith(".")) {
-      skipped.push(`${JSON.stringify(spec)}: use an absolute path or a package name`)
+      skipped.push(`${JSON.stringify(spec)}：请使用绝对路径或包名`)
       continue
     }
     const loaded = await import(spec.startsWith("~/") ? homedir() + spec.slice(1) : spec).then(
@@ -21,17 +21,17 @@ export async function loadWallpapers(modules: unknown, builtin: readonly Wallpap
       (error: { message?: unknown } | undefined) => new Error(String(error?.message ?? error)),
     )
     if (loaded instanceof Error) {
-      skipped.push(`${spec}: ${loaded.message}`)
+      skipped.push(`${spec}：${loaded.message}`)
       continue
     }
     if (loaded === undefined) {
-      skipped.push(`${spec}: no default export (a Wallpaper or an array of them)`)
+      skipped.push(`${spec}：没有默认导出（一个 Wallpaper 或其数组）`)
       continue
     }
     for (const value of Array.isArray(loaded) ? loaded : [loaded]) {
       const reason = problem(value, taken)
       if (reason) {
-        skipped.push(`${spec}: ${reason}`)
+        skipped.push(`${spec}：${reason}`)
         continue
       }
       const wallpaper = value as Wallpaper
@@ -44,15 +44,15 @@ export async function loadWallpapers(modules: unknown, builtin: readonly Wallpap
 
 // Why a value can't be used as a wallpaper, if it can't.
 function problem(value: unknown, taken: Set<string>) {
-  if (typeof value !== "object" || value === null) return "not a wallpaper object"
+  if (typeof value !== "object" || value === null) return "不是一个壁纸对象"
   const w = value as Record<string, unknown>
-  if (typeof w.id !== "string" || !/^[a-z0-9-]+$/.test(w.id)) return `id ${JSON.stringify(w.id)} must be lowercase letters, digits and dashes`
-  if (taken.has(w.id)) return `id "${w.id}" is already taken`
-  if (typeof w.name !== "string" || typeof w.description !== "string") return `${w.id}: name and description must be strings`
-  if (typeof w.create !== "function") return `${w.id}: create must be a function`
+  if (typeof w.id !== "string" || !/^[a-z0-9-]+$/.test(w.id)) return `id ${JSON.stringify(w.id)} 只能使用小写字母、数字和短横线`
+  if (taken.has(w.id)) return `id "${w.id}" 已被占用`
+  if (typeof w.name !== "string" || typeof w.description !== "string") return `${w.id}：name 和 description 必须是字符串`
+  if (typeof w.create !== "function") return `${w.id}：create 必须是一个函数`
   const activity = w.activity as Record<string, unknown> | undefined
-  if (!ACTIVITIES.every((a) => typeof activity?.[a] === "string")) return `${w.id}: activity needs a description for each of ${ACTIVITIES.join(", ")}`
+  if (!ACTIVITIES.every((a) => typeof activity?.[a] === "string")) return `${w.id}：activity 需要为 ${ACTIVITIES.join(", ")} 中的每一项提供描述`
   const scrim = w.scrim as Record<string, unknown> | undefined
   const isScrim = (s: unknown) => Array.isArray(s) && s.length === 3 && s.every((c) => Array.isArray(c) && c.length === 3 && c.every((v) => typeof v === "number"))
-  if (!TIMES.every((t) => isScrim(scrim?.[t]))) return `${w.id}: scrim needs three RGB colors for each of ${TIMES.join(", ")}`
+  if (!TIMES.every((t) => isScrim(scrim?.[t]))) return `${w.id}：scrim 需要为 ${TIMES.join(", ")} 中的每一项提供三个 RGB 颜色`
 }

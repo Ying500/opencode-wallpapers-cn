@@ -722,12 +722,12 @@ function buildRays(seed: number) {
 
 export const jungle: Wallpaper = {
   id: "jungle",
-  name: "Jungle",
-  description: "A misty rainforest with a waterfall, light through the canopy, and a toucan flying by now and then",
+  name: "丛林",
+  description: "薄雾笼罩的雨林，有瀑布、透过树冠的光线，以及偶尔飞过的巨嘴鸟",
   activity: {
-    calm: "Trees, vines, a waterfall and swaying leaves",
-    lively: "Adds a swinging spider monkey and blue morpho butterflies",
-    teeming: "Adds a jaguar, scarlet macaws, a tree frog and more butterflies",
+    calm: "树木、藤蔓、瀑布和摇曳的树叶",
+    lively: "增加荡来荡去的蜘蛛猴和蓝色大闪蝶",
+    teeming: "增加美洲豹、绯红金刚鹦鹉、树蛙和更多蝴蝶",
   },
   scrim: {
     day: [

@@ -13,7 +13,7 @@ export default Plugin.define({
       initial: { wallpaper: "", activity: "calm", time: "auto", power: "saver" },
     })
     const external = await loadWallpapers(context.options.wallpapers, WALLPAPERS)
-    if (external.skipped.length) context.ui.toast.show({ message: `Skipped wallpapers:\n${external.skipped.join("\n")}`, variant: "error" })
+    if (external.skipped.length) context.ui.toast.show({ message: `已跳过的壁纸：\n${external.skipped.join("\n")}`, variant: "error" })
     const wallpapers = [...WALLPAPERS, ...external.wallpapers]
     const engine = createEngine(context, { dump: process.env.WALLPAPER_DUMP, dumpFade: process.env.WALLPAPER_DUMP_FADE })
     // Environment overrides for development; they win over the stored choice.
@@ -118,62 +118,62 @@ export default Plugin.define({
     const apply = async (arg: string): Promise<{ message: string; error?: true }> => {
       if (arg === "off") {
         await update((draft) => choose(draft, ""))
-        return { message: "Wallpaper off" }
+        return { message: "已关闭壁纸" }
       }
       const level = ACTIVITIES.find((a) => a === arg)
       if (level) {
         await update((draft) => {
           draft.activity = level
         })
-        return { message: `Wallpaper activity: ${level}` }
+        return { message: `壁纸活跃度：${level}` }
       }
       if (arg === "location" || arg.startsWith("location ")) {
         const place = arg.slice("location".length).trim()
         await update((draft) => {
           draft.location = place
         })
-        return { message: place ? `Wallpaper location: ${place}` : "Wallpaper location cleared" }
+        return { message: place ? `壁纸位置：${place}` : "已清除壁纸位置" }
       }
       const s = SEASONS.find((value) => value === arg || `season ${value}` === arg)
       if (s || arg === "season auto") {
         await update((draft) => {
           draft.season = s ?? "auto"
         })
-        return { message: s ? `Wallpaper season: ${s}` : `Wallpaper season follows the calendar (${seasonAt(new Date(), south())} now)` }
+        return { message: s ? `壁纸季节：${s}` : `壁纸季节跟随日历（当前为 ${seasonAt(new Date(), south())}）` }
       }
       const w = WEATHER_SETTINGS.find((value) => (value === arg && value !== "off") || `weather ${value}` === arg)
       if (w) {
         await update((draft) => {
           draft.weather = w
         })
-        if (w === "local" && !location()) return { message: "Local weather needs a place: /wallpaper location <city or lat,lon>. Showing clear until then", error: true }
-        return { message: w === "off" ? "Wallpaper weather: the wallpaper's own" : `Wallpaper weather: ${w}` }
+        if (w === "local" && !location()) return { message: "本地天气需要一个地点：/wallpaper location <城市或纬度,经度>。在此之前显示为晴", error: true }
+        return { message: w === "off" ? "壁纸天气：各壁纸自带的天气" : `壁纸天气：${w}` }
       }
       const t = TIMES.find((value) => value === arg)
       if (t || arg === "auto") {
         await update((draft) => {
           draft.time = t ?? "auto"
         })
-        return { message: t ? `Wallpaper time: ${t}` : `Wallpaper time follows your clock (${timeAt(new Date())} now)` }
+        return { message: t ? `壁纸时段：${t}` : `壁纸时段跟随你的时钟（当前为 ${timeAt(new Date())}）` }
       }
       const mode = POWERS.find((p) => p === arg)
       if (mode) {
         await update((draft) => {
           draft.power = mode
         })
-        return { message: `Wallpaper power: ${mode}` }
+        return { message: `壁纸功耗模式：${mode}` }
       }
       const b = BRIGHTNESSES.find((value) => value === arg)
       if (b) {
         await update((draft) => {
           draft.brightness = b
         })
-        return { message: `Wallpaper brightness: ${b}` }
+        return { message: `壁纸亮度：${b}` }
       }
       const wallpaper = wallpapers.find((w) => w.id === arg)
-      if (!wallpaper) return { message: `No wallpaper "${arg}". Available: ${wallpapers.map((w) => w.id).join(", ")}`, error: true }
+      if (!wallpaper) return { message: `没有名为 "${arg}" 的壁纸。可用：${wallpapers.map((w) => w.id).join(", ")}`, error: true }
       await update((draft) => choose(draft, arg))
-      return { message: `${wallpaper.name} wallpaper on` }
+      return { message: `已开启 ${wallpaper.name} 壁纸` }
     }
     const run = async (input?: string) => {
       const arg = input?.trim().toLowerCase()
@@ -185,74 +185,74 @@ export default Plugin.define({
     // keys change the highlighted row in place, and the dialog stays open until Escape.
     const rows: Row[] = [
       {
-        title: "Wallpaper",
+        title: "壁纸",
         values: () => ["off", ...wallpapers.map((w) => w.id)],
         value: () => shown() || "off",
-        label: (v) => wallpapers.find((w) => w.id === v)?.name ?? "Off",
-        describe: (v) => wallpapers.find((w) => w.id === v)?.description ?? "No wallpaper",
+        label: (v) => wallpapers.find((w) => w.id === v)?.name ?? "关闭",
+        describe: (v) => wallpapers.find((w) => w.id === v)?.description ?? "无壁纸",
         set: apply,
       },
       {
-        title: "Activity",
+        title: "活跃度",
         values: () => ACTIVITIES,
         value: activity,
-        label: capitalize,
+        label: (v) => ACTIVITY_LABELS[v as Activity] ?? v,
         describe: (v) => (wallpapers.find((w) => w.id === shown()) ?? wallpapers[0]).activity[v as Activity],
         set: apply,
       },
       {
-        title: "Time of day",
+        title: "时段",
         values: () => ["auto", ...TIMES],
         value: timeSetting,
-        label: (v) => (v === "auto" ? `Auto (${timeAt(now())})` : capitalize(v)),
-        describe: (v) => (v === "auto" ? "Follows your clock: day from 7am, sunset from 6pm, night from 8pm" : `Always ${v}`),
+        label: (v) => (v === "auto" ? `自动（${TIME_LABELS[timeAt(now())]}）` : TIME_LABELS[v as Time]),
+        describe: (v) => (v === "auto" ? "跟随你的时钟：早上 7 点起为白天，晚上 6 点起为日落，晚上 8 点起为夜晚" : `始终为${TIME_LABELS[v as Time]}`),
         set: apply,
       },
       {
-        title: "Season",
+        title: "季节",
         values: () => ["season auto", ...SEASONS.map((s) => `season ${s}`)],
         value: () => `season ${seasonSetting()}`,
-        label: (v) => (v === "season auto" ? `Auto (${seasonAt(now(), south())})` : capitalize(v.slice(7))),
+        label: (v) => (v === "season auto" ? `自动（${SEASON_LABELS[seasonAt(now(), south())]}）` : SEASON_LABELS[v.slice(7) as Season]),
         describe: (v) =>
           v === "season auto"
-            ? `Follows the calendar in the ${south() ? "southern" : "northern"} hemisphere: spring from ${south() ? "September" : "March"}, summer from ${south() ? "December" : "June"}, autumn from ${south() ? "March" : "September"}, winter from ${south() ? "June" : "December"}`
-            : `Always ${v.slice(7)}. Farm, desert, jungle, beach and the zen garden change with the seasons`,
+            ? `跟随${south() ? "南" : "北"}半球的日历：春季从 ${south() ? "9" : "3"} 月开始，夏季从 ${south() ? "12" : "6"} 月开始，秋季从 ${south() ? "3" : "9"} 月开始，冬季从 ${south() ? "6" : "12"} 月开始`
+            : `始终为${SEASON_LABELS[v.slice(7) as Season]}。农场、沙漠、丛林、海滩和禅意花园会随季节变化`,
         set: apply,
       },
       {
-        title: "Weather",
+        title: "天气",
         values: () => ["off", "local", "clear", "rain", "snow", "fog"].map((w) => `weather ${w}`),
         value: () => `weather ${weatherSetting()}`,
-        label: (v) => (v === "weather local" ? `Local (${location() ? (local()?.weather ?? "checking") : "no location"})` : capitalize(v.slice(8))),
+        label: (v) => (v === "weather local" ? `本地（${location() ? weatherLabel(local()?.weather) : "未设置地点"}）` : WEATHER_LABELS[v.slice(8) as Weather]),
         describe: (v) => {
-          if (v === "weather off") return "Each wallpaper's own: snow on the tundra, winter flurries, showers in the jungle's rainy season, rain on the city at night"
-          if (v !== "weather local") return `Always ${v.slice(8)} on outdoor wallpapers`
-          if (!location()) return "Set a place first: /wallpaper location <city or lat,lon>, or WALLPAPER_LOCATION"
-          return `Real weather for ${location()} from Open-Meteo, checked every 30 minutes`
+          if (v === "weather off") return "各壁纸自带的天气：苔原的降雪、冬季的飘雪、丛林雨季的阵雨、夜晚城市的降雨"
+          if (v !== "weather local") return `室外壁纸始终为${WEATHER_LABELS[v.slice(8) as Weather]}`
+          if (!location()) return "请先设置地点：/wallpaper location <城市或纬度,经度>，或 WALLPAPER_LOCATION"
+          return `从 Open-Meteo 获取 ${location()} 的真实天气，每 30 分钟检查一次`
         },
         set: apply,
       },
       {
-        title: "Brightness",
+        title: "亮度",
         values: () => BRIGHTNESSES,
         value: brightness,
-        label: capitalize,
+        label: (v) => BRIGHTNESS_LABELS[v as Brightness] ?? v,
         describe: (v) =>
-          ({ subtle: "A dim scene that stays out of the way", normal: "The standard look", vivid: "A brighter scene, with firmer shade behind text" })[
+          ({ subtle: "暗淡的画面，尽量不打扰视线", normal: "标准外观", vivid: "更明亮的画面，文字后有更实的底色" })[
             v as Brightness
-          ] + (context.themeMode === "light" ? ", washed out for your light theme" : ""),
+          ] + (context.themeMode === "light" ? "，已为你的浅色主题淡化处理" : ""),
         set: apply,
       },
       {
-        title: "Shuffle",
+        title: "随机切换",
         values: () => SHUFFLES,
         value: shuffleSetting,
-        label: (v) => ({ off: "Off", hourly: "Every hour", session: "Every session" })[v as Shuffle],
+        label: (v) => ({ off: "关闭", hourly: "每小时", session: "每次会话" })[v as Shuffle],
         describe: (v) =>
           ({
-            off: "Keep the wallpaper you chose",
-            hourly: "Switch to a different wallpaper every hour",
-            session: "Switch to a different wallpaper each time OpenCode starts",
+            off: "保留你选择的壁纸",
+            hourly: "每小时切换到另一张壁纸",
+            session: "每次 OpenCode 启动时切换到另一张壁纸",
           })[v as Shuffle],
         set: (v) =>
           update((draft) => {
@@ -261,28 +261,28 @@ export default Plugin.define({
           }),
       },
       {
-        title: "Per project",
+        title: "按项目",
         values: () => ["off", "on"],
         value: () => (stored.perProject ? "on" : "off"),
-        label: capitalize,
+        label: (v) => (v === "on" ? "开启" : "关闭"),
         describe: (v) =>
           v === "on"
-            ? `Each project remembers its own wallpaper, starting from the global one. This project: ${context.ui.format.path(directory())}`
-            : "The same wallpaper in every project",
+            ? `每个项目记住各自的壁纸，默认沿用全局设置。当前项目：${context.ui.format.path(directory())}`
+            : "所有项目使用同一张壁纸",
         set: (v) =>
           update((draft) => {
             draft.perProject = v === "on"
           }),
       },
       {
-        title: "Power",
+        title: "功耗",
         values: () => POWERS,
         value: power,
-        label: capitalize,
+        label: (v) => ({ saver: "省电", smooth: "流畅" })[v as Power],
         describe: (v) =>
           v === "saver"
-            ? "Slows to 5 fps after 30 seconds without typing, mouse or agent activity, and pauses while the terminal is in the background"
-            : "Always 15 fps",
+            ? "在 30 秒无键盘、鼠标或 agent 活动后降至 5 fps，终端处于后台时暂停"
+            : "始终 15 fps",
         set: apply,
       },
     ]
@@ -306,20 +306,20 @@ export default Plugin.define({
       context.keymap.layer(() => ({
         mode: "modal",
         commands: [
-          { bind: "up", title: "Previous setting", group: "Wallpaper", run: () => move(-1) },
-          { bind: "ctrl+p", title: "Previous setting", group: "Wallpaper", run: () => move(-1) },
-          { bind: "down", title: "Next setting", group: "Wallpaper", run: () => move(1) },
-          { bind: "ctrl+n", title: "Next setting", group: "Wallpaper", run: () => move(1) },
-          { bind: "right", title: "Next value", group: "Wallpaper", run: () => void change(selected(), 1) },
-          { bind: "return", title: "Next value", group: "Wallpaper", run: () => void change(selected(), 1) },
-          { bind: "left", title: "Previous value", group: "Wallpaper", run: () => void change(selected(), -1) },
+          { bind: "up", title: "上一项设置", group: "壁纸", run: () => move(-1) },
+          { bind: "ctrl+p", title: "上一项设置", group: "壁纸", run: () => move(-1) },
+          { bind: "down", title: "下一项设置", group: "壁纸", run: () => move(1) },
+          { bind: "ctrl+n", title: "下一项设置", group: "壁纸", run: () => move(1) },
+          { bind: "right", title: "下一个取值", group: "壁纸", run: () => void change(selected(), 1) },
+          { bind: "return", title: "下一个取值", group: "壁纸", run: () => void change(selected(), 1) },
+          { bind: "left", title: "上一个取值", group: "壁纸", run: () => void change(selected(), -1) },
         ],
       }))
       return (
         <box gap={1} paddingBottom={1}>
           <box paddingLeft={4} paddingRight={4} flexDirection="row" justifyContent="space-between">
             <text fg={theme.text.base} attributes={TextAttributes.BOLD}>
-              Wallpaper settings
+              壁纸设置
             </text>
             <text fg={theme.text.muted} onMouseUp={() => context.ui.dialog.clear()}>
               esc
@@ -360,13 +360,13 @@ export default Plugin.define({
               <span style={{ fg: theme.text.base }}>
                 <b>↑/↓</b>{" "}
               </span>
-              <span style={{ fg: theme.text.muted }}>setting</span>
+              <span style={{ fg: theme.text.muted }}>设置项</span>
             </text>
             <text>
               <span style={{ fg: theme.text.base }}>
                 <b>enter ←/→</b>{" "}
               </span>
-              <span style={{ fg: theme.text.muted }}>change</span>
+              <span style={{ fg: theme.text.muted }}>更改</span>
             </text>
           </box>
         </box>
@@ -399,7 +399,7 @@ export default Plugin.define({
               slow ? CLOCK_FADE : undefined,
             )
           } catch (error) {
-            notify(`${wallpaper.name} wallpaper failed to start: ${error instanceof Error ? error.message : String(error)}`, "error")
+            notify(`${wallpaper.name} 壁纸启动失败：${error instanceof Error ? error.message : String(error)}`, "error")
           }
         })
         createEffect(() => engine.power(power()))
@@ -421,34 +421,34 @@ export default Plugin.define({
           commands: [
             {
               id: "wallpapers.choose",
-              title: "Choose wallpaper",
+              title: "选择壁纸",
               description:
-                "Animated scene behind the UI. Args: wallpaper id, off, calm, lively, teeming, day, sunset, night, auto, a season, a weather, location <place>, subtle, normal, vivid, saver, smooth",
-              group: "Wallpapers",
+                "UI 背后的动态画面。参数：壁纸 id、off、calm、lively、teeming、day、sunset、night、auto、某个季节、某种天气、location <地点>、subtle、normal、vivid、saver、smooth",
+              group: "壁纸",
               palette: true,
               slash: { name: "wallpaper", arguments: true },
               run,
             },
             {
               id: "wallpapers.off",
-              title: "Turn off wallpaper",
-              group: "Wallpapers",
+              title: "关闭壁纸",
+              group: "壁纸",
               palette: true,
               run: () => run("off"),
             },
             {
               id: "wallpapers.activity",
-              title: "Cycle wallpaper activity",
-              description: "Calm, lively, teeming",
-              group: "Wallpapers",
+              title: "切换壁纸活跃度",
+              description: "calm（静谧）、lively（活跃）、teeming（繁盛）",
+              group: "壁纸",
               palette: true,
               run: () => cycle(ACTIVITIES, activity()),
             },
             {
               id: "wallpapers.time",
-              title: "Cycle wallpaper time of day",
-              description: "Auto, day, sunset, night",
-              group: "Wallpapers",
+              title: "切换壁纸时段",
+              description: "auto（自动）、day（白天）、sunset（日落）、night（夜晚）",
+              group: "壁纸",
               palette: true,
               run: () => cycle(["auto", ...TIMES] as const, timeSetting()),
             },
@@ -468,8 +468,16 @@ export default Plugin.define({
   },
 })
 
-function capitalize(text: string) {
-  return text[0].toUpperCase() + text.slice(1)
+// Display names for the stored enum values, so the picker reads in Chinese while /wallpaper keeps taking the English ids.
+const ACTIVITY_LABELS: Record<Activity, string> = { calm: "静谧", lively: "活跃", teeming: "繁盛" }
+const TIME_LABELS: Record<Time, string> = { day: "白天", sunset: "日落", night: "夜晚" }
+const SEASON_LABELS: Record<Season, string> = { spring: "春季", summer: "夏季", autumn: "秋季", winter: "冬季" }
+const WEATHER_LABELS: Record<Weather, string> = { clear: "晴", overcast: "阴", rain: "雨", snow: "雪", fog: "雾" }
+const BRIGHTNESS_LABELS: Record<Brightness, string> = { subtle: "低调", normal: "标准", vivid: "鲜明" }
+
+// The local-weather label shows the fetched condition, or "checking" before the first result arrives.
+function weatherLabel(value: Weather | undefined) {
+  return value ? WEATHER_LABELS[value] : "查询中"
 }
 
 // Seconds auto takes to fade into the next time of day when the clock crosses into it.

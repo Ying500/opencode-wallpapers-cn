@@ -661,12 +661,12 @@ function scaleRGB(c: RGB, k: number): RGB {
 
 export const tundra: Wallpaper = {
   id: "tundra",
-  name: "Tundra",
-  description: "Snowy peaks, a frozen lake, igloos and a snowman under falling snow, with a snowy owl now and then",
+  name: "苔原",
+  description: "积雪的山峰、结冰的湖泊、冰屋和落雪下的雪人，以及偶尔出现的雪鸮",
   activity: {
-    calm: "Peaks, igloos, a snowman and falling snow",
-    lively: "Adds waddling penguins and an arctic fox",
-    teeming: "Adds a polar bear, an ice fisher and another snowman",
+    calm: "山峰、冰屋、雪人和飘落的雪",
+    lively: "增加摇摇摆摆的企鹅和一只北极狐",
+    teeming: "增加北极熊、凿冰垂钓者和另一个雪人",
   },
   scrim: {
     day: [

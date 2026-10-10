@@ -993,12 +993,12 @@ class City extends Canvas {
 
 export const city: Wallpaper = {
   id: "city",
-  name: "City",
-  description: "A skyline over a river, traffic on an elevated highway, and a blimp drifting over now and then",
+  name: "城市",
+  description: "河流上方的天际线、高架桥上的车流，以及偶尔飘过的飞艇",
   activity: {
-    calm: "Skyline, river and light traffic on the highway",
-    lively: "Adds a train crossing the bridge and more traffic",
-    teeming: "Adds neon signs, boats on the river, people on the street, and rain at night",
+    calm: "天际线、河流和高架桥上稀疏的车流",
+    lively: "增加驶过大桥的列车和更多车流",
+    teeming: "增加霓虹招牌、河上的船只、街上的人群，以及夜晚的降雨",
   },
   scrim: {
     day: [

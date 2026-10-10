@@ -1,218 +1,180 @@
 # OpenCode Wallpapers
 
-Animated wallpapers for the OpenCode terminal UI. A slow, quiet scene fills the background behind everything, drawn
-with Unicode block characters and kept readable behind text.
+为 OpenCode 终端界面提供动态壁纸。一幅缓慢、安静的场景铺满一切内容的背景，用 Unicode 块字符绘制，在文字后方依然保持可读。
 
-![Beach, tundra, jungle, desert and space wallpapers in motion](screenshots/hero.gif)
+![海滩、苔原、丛林、沙漠和太空壁纸的动态展示](screenshots/hero.gif)
 
-> This project is not affiliated with, endorsed by, or sponsored by OpenCode or its maintainers.
+> 本项目与 OpenCode 及其维护者无隶属关系，也未获得其认可或赞助。
 
-## Install
+## 安装
 
-Requires OpenCode 2. Clone the repository into OpenCode's plugin directory and restart OpenCode:
+需要 OpenCode 2。把仓库克隆到 OpenCode 的插件目录，然后重启 OpenCode：
 
 ```sh
 git clone https://github.com/vaprdev/opencode-wallpapers.git ~/.config/opencode/plugins/wallpapers
 ```
 
-To keep the clone elsewhere, add its absolute path to `plugins` in `~/.config/opencode/cli.json` instead. Update with
-`git pull` in the clone.
+若想克隆到其他地方，请改为在 `~/.config/opencode/cli.json` 的 `plugins` 中加入它的绝对路径。更新时在克隆目录里执行 `git pull` 即可。
 
-## Use
+## 使用
 
-Type `/wallpaper` to open the wallpaper menu:
+输入 `/wallpaper` 打开壁纸菜单：
 
-![The wallpaper menu](screenshots/menu.png)
+![壁纸菜单](screenshots/menu.png)
 
-Use ↑/↓ to pick a setting, and Enter or ←/→ to change it. The wallpaper crossfades to each choice as you go, and
-Escape closes the menu. Your choices are kept across restarts.
+用 ↑/↓ 选择设置项，按 Enter 或 ←/→ 修改它。切换时壁纸会交叉淡入到每个选项，按 Escape 关闭菜单。你的选择会在重启后保留。
 
-- **Brightness** is subtle, normal or vivid. Brighter scenes get a firmer scrim behind text, so it stays readable.
-- **Shuffle** switches to a different wallpaper every hour, or each time OpenCode starts.
-- **Per project** remembers a wallpaper for each project directory. A project starts from the global choice until you
-  pick one there.
+- **亮度**分为低调、标准或鲜明。场景越亮，文字背后的底色就越实，以保持可读。
+- **随机切换**每小时换一张壁纸，或在每次 OpenCode 启动时换一张。
+- **按项目**为每个项目目录记住各自的壁纸。在某个项目中挑选之前，它会先沿用全局选择。
 
-With a light OpenCode theme the scene is washed out toward white and text gets a pale scrim instead of a dark one.
+使用浅色 OpenCode 主题时，场景会向白色淡化，文字底色也会变成淡色而不是深色。
 
-## Wallpapers
+## 壁纸
 
-| Wallpaper | Description |
+| 壁纸 | 描述 |
 | --- | --- |
-| `ocean` | Deep water, god rays, marine snow, and a whale that drifts past now and then. |
-| `desert` | Mesas and dunes with a saguaro, a cow skull, and a tumbleweed now and then. |
-| `jungle` | A misty rainforest with a waterfall, light through the canopy, and a toucan flying by now and then. |
-| `space` | A ringed planet turning slowly below a nebula and drifting stars, with a comet now and then. |
-| `farm` | Rolling fields with a red barn, a turning windmill and swaying corn, and a tractor now and then. |
-| `tundra` | Snowy peaks, a frozen lake, igloos and a snowman under falling snow, with a snowy owl now and then. |
-| `beach` | Waves washing up a sandy beach between swaying palms, with a sailboat on the horizon now and then. |
-| `city` | A skyline over a river, traffic on an elevated highway, and a blimp drifting over now and then. |
-| `zen` | A koi pond under a red bridge, raked gravel, stone lanterns and falling cherry petals, with a heron now and then. |
-| `prehistoric` | A smoking volcano over ferns and cycads, with a T. rex stomping by now and then. |
+| `ocean` | 深水、光柱、海雪，以及偶尔游过的鲸鱼。 |
+| `desert` | 梅萨台地与沙丘，有仙人柱、牛头骨，以及偶尔滚过的风滚草。 |
+| `jungle` | 薄雾笼罩的雨林，有瀑布、透过树冠的光线，以及偶尔飞过的巨嘴鸟。 |
+| `space` | 星云和漂移的星辰下方缓缓旋转的带环行星，以及偶尔出现的彗星。 |
+| `farm` | 起伏的田野上有红色谷仓、旋转的风车和摇曳的玉米，以及偶尔驶过的拖拉机。 |
+| `tundra` | 积雪的山峰、结冰的湖泊、冰屋和落雪下的雪人，以及偶尔出现的雪鸮。 |
+| `beach` | 摇曳的棕榈树之间，海浪冲刷着沙滩，地平线上偶尔出现一艘帆船。 |
+| `city` | 河流上方的天际线、高架桥上的车流，以及偶尔飘过的飞艇。 |
+| `zen` | 红桥下的锦鲤池、耙过的砾石、石灯笼和飘落的樱花瓣，以及偶尔出现的苍鹭。 |
+| `prehistoric` | 蕨类和苏铁上方的冒烟火山，以及偶尔踏步走过的霸王龙。 |
 
-### Activity
+### 活跃度
 
-Every wallpaper has three activity levels, which set how much is going on behind your work:
+每张壁纸都有三档活跃度，用来决定你的工作背后有多少动静：
 
-| Wallpaper | Calm | Lively | Teeming |
+| 壁纸 | 静谧 | 活跃 | 繁盛 |
 | --- | --- | --- | --- |
-| `ocean` | Water, light and the whale | Adds a fish and an octopus | Adds a shark, diver, turtle and kelp |
-| `desert` | Mesas, a saguaro and a skull | Adds a soaring eagle (an owl at night) and a rattlesnake | Adds vultures (bats at night), a howling coyote and more cacti |
-| `jungle` | Trees, vines, a waterfall and swaying leaves | Adds a swinging spider monkey and blue morpho butterflies | Adds a jaguar, scarlet macaws, a tree frog and more butterflies |
-| `space` | The planet, its rings, a moon and the stars | Adds an orbiting space station and a satellite | Adds asteroids, a floating astronaut and a flying saucer |
-| `farm` | Barn, windmill, fields and corn | Adds grazing cows and pecking chickens | Adds a farmer, pigs in the mud and crows over the corn |
-| `tundra` | Peaks, igloos, a snowman and falling snow | Adds waddling penguins and an arctic fox | Adds a polar bear, an ice fisher and another snowman |
-| `beach` | Sea, waves, sand and palm trees | Adds leaping dolphins and seagulls | Adds a crab, a surfer, an umbrella and a sandcastle |
-| `city` | Skyline, river and light traffic on the highway | Adds a train crossing the bridge and more traffic | Adds neon signs, boats on the river, people on the street, and rain at night |
-| `zen` | Garden, pond ripples, petals and a bamboo fountain | Adds koi circling under the lily pads | Adds more koi, a frog on a lily pad and dragonflies |
-| `prehistoric` | Volcano, smoke, ferns and cycads | Adds a browsing sauropod and circling pterosaurs | Adds a triceratops herd, dragonflies and a lake with something in it |
+| `ocean` | 海水、光线和鲸鱼 | 增加一条鱼和一只章鱼 | 增加鲨鱼、潜水员、海龟和海带 |
+| `desert` | 梅萨台地、一株仙人柱和一个头骨 | 增加翱翔的鹰（夜晚为猫头鹰）和一条响尾蛇 | 增加秃鹫（夜晚为蝙蝠）、嚎叫的郊狼和更多仙人掌 |
+| `jungle` | 树木、藤蔓、瀑布和摇曳的树叶 | 增加荡来荡去的蜘蛛猴和蓝色大闪蝶 | 增加美洲豹、绯红金刚鹦鹉、树蛙和更多蝴蝶 |
+| `space` | 行星、它的光环、一颗卫星和群星 | 增加一座环绕运行的空间站和一颗人造卫星 | 增加小行星、漂浮的宇航员和飞碟 |
+| `farm` | 谷仓、风车、田野和玉米 | 增加吃草的奶牛和啄食的鸡 | 增加农夫、泥地里的猪和玉米地上空的乌鸦 |
+| `tundra` | 山峰、冰屋、雪人和飘落的雪 | 增加摇摇摆摆的企鹅和一只北极狐 | 增加北极熊、凿冰垂钓者和另一个雪人 |
+| `beach` | 大海、海浪、沙滩和棕榈树 | 增加跃出水面的海豚和海鸥 | 增加螃蟹、冲浪者、遮阳伞和沙堡 |
+| `city` | 天际线、河流和高架桥上稀疏的车流 | 增加驶过大桥的列车和更多车流 | 增加霓虹招牌、河上的船只、街上的人群，以及夜晚的降雨 |
+| `zen` | 花园、池面涟漪、花瓣和竹制水景 | 增加在睡莲叶下游弋的锦鲤 | 增加更多锦鲤、睡莲叶上的青蛙和蜻蜓 |
+| `prehistoric` | 火山、烟雾、蕨类和苏铁 | 增加觅食的蜥脚类恐龙和盘旋的翼龙 | 增加三角龙群、蜻蜓，以及藏有东西的湖泊 |
 
-### Time of day
+### 时段
 
-Every wallpaper has a day, sunset and night look. By default the time of day follows your clock: day from 7am,
-sunset from 6pm (and at dawn, 6 to 7am), night from 8pm, fading from one to the next over 45 seconds. Pick one in the
-menu to keep it fixed.
+每张壁纸都有白天、日落和夜晚三种外观。默认情况下时段跟随你的时钟：早上 7 点起为白天，晚上 6 点起为日落（清晨 6 到 7 点也是日落），晚上 8 点起为夜晚，并在 45 秒内从一种过渡到另一种。在菜单中选择一个即可固定不变。
 
-- **Ocean:** sunlit water by day, golden light at sunset, and at night dark moonlit water with glowing plankton
-  and, in teeming, a diver's torch.
-- **Desert:** a high sun with sunlit rock and shadows by day, backlit silhouettes at sunset, and a moonlit night with
-  stars and the Milky Way, where an owl and bats take over the sky.
-- **Jungle:** sunlit greens by day, warm backlit mist at sunset, and a moonlit night lit by fireflies, where the
-  jaguar's eyes glow.
-- **Space:** the planet's sunlit side by day, an orbital sunrise with the star flaring at its edge at sunset, and its
-  night side with city lights and aurora under a bright Milky Way.
-- **Farm:** sunny fields by day, a backlit barn at sunset, and a moonlit night with glowing windows and fireflies.
-- **Tundra:** crisp blue-white snow by day, pink alpenglow at sunset, and deep blue snow under a green and violet
-  aurora at night, with warm light from the igloos.
-- **Beach:** turquoise water by day, a glittering path under the setting sun, and a moon path at night with glowing
-  bioluminescent waves.
-- **City:** glass towers in the sun by day, backlit towers with the first lit windows at sunset, and at night windows,
-  lamps and neon in saturated colors mirrored in the river, with rain and a wet street in teeming.
-- **Zen garden:** a sunlit pond mirroring the sky by day, the setting sun glittering in it at sunset, and at night
-  amber lanterns, fireflies and the gold moon reflected in dark blue water.
-- **Prehistoric:** a hazy blue sky over glowing lava by day, backlit dinosaurs at sunset, and a moonlit night where
-  red and orange lava runs down the volcano, lights its smoke and shimmers on the lake.
+- **海洋：**白天是阳光洒落的水面，日落时是金色的光，夜晚是幽暗的月光水面，泛着发光浮游生物，在繁盛档还有潜水员的手电。
+- **沙漠：**白天高悬的太阳照亮岩石和阴影，日落时是逆光的剪影，夜晚月色下有繁星和银河，猫头鹰和蝙蝠接管天空。
+- **丛林：**白天是阳光下的绿色，日落时是温暖的逆光薄雾，夜晚由萤火虫点亮，美洲豹的眼睛会发光。
+- **太空：**白天是行星被照亮的一面，日落时是轨道上的日出、星体边缘闪耀锐光，夜晚是行星的暗面，城市灯光和极光在明亮的银河下。
+- **农场：**白天是阳光明媚的田野，日落时谷仓逆光，夜晚月色下有透光的窗户和萤火虫。
+- **苔原：**白天是清冽的蓝白色积雪，日落时是粉色的高山辉光，夜晚是绿色和紫色极光下的深蓝雪原，冰屋透出暖光。
+- **海滩：**白天是碧绿的海水，日落时落日下泛起一条闪烁的光路，夜晚是月光的路径和发光的生物荧光浪花。
+- **城市：**白天是阳光下的玻璃塔楼，日落时塔楼逆光、最先点亮的窗户出现，夜晚是窗户、路灯和霓虹的浓烈色彩倒映在河中，繁盛档还有降雨和濡湿的街道。
+- **禅意花园：**白天是映着天空的阳光池塘，日落时落日在水面闪烁，夜晚是琥珀色灯笼、萤火虫和深蓝水面上倒映的金色月亮。
+- **史前：**白天是发光熔岩上方雾蒙蒙的蓝天，日落时恐龙逆光，夜晚月色下红橙色的熔岩沿火山流下，照亮烟雾，也在湖面闪烁。
 
-## Seasons and weather
+## 季节与天气
 
-By default the season follows the calendar: spring from March, summer from June, autumn from September, winter from
-December, flipped in the southern hemisphere once a location (below) puts you there. Pick a season in the menu to keep
-it fixed.
+默认情况下季节跟随日历：春季从 3 月开始，夏季从 6 月开始，秋季从 9 月开始，冬季从 12 月开始，一旦设置了地点（见下文）把你放到南半球，则会反过来。在菜单中选择一个季节即可固定不变。
 
-- **Farm:** blossom, wildflowers and young corn in spring; ripe corn and fireflies in summer; gold fields, dry corn,
-  pumpkins and falling leaves in autumn; snow on the fields, roofs and bare trees in winter, with a light flurry.
-- **Desert:** a wildflower bloom and flowering saguaros in spring, and a dusting of snow on the mesas in winter.
-- **Jungle:** the rainy season (summer and autumn) brings thicker mist, a fuller waterfall and a light shower.
-- **Beach:** a crowd of umbrellas, sunbathers and swimmers in summer, and an empty beach with cooler water in autumn and
-  winter.
-- **Zen garden:** cherry blossom in spring, green leaves in summer, red and gold leaves falling in autumn, and bare
-  branches under a light snowfall in winter.
-- **Ocean, space, tundra, city and prehistoric** look the same all year.
+- **农场：**春天有花朵、野花和幼嫩的玉米；夏天有成熟的玉米和萤火虫；秋天有金色的田野、干枯的玉米、南瓜和飘落的树叶；冬天田野、屋顶和光秃的树上有积雪，还有一阵小风雪。
+- **沙漠：**春天有野花盛放和开花的仙人柱，冬天梅萨台地上有一层薄雪。
+- **丛林：**雨季（夏季和秋季）带来更浓的雾、更丰沛的瀑布和一阵小雨。
+- **海滩：**夏天有成群的遮阳伞、晒日光浴的人和游泳的人，秋天和冬天则是空荡荡的海滩和更凉的海水。
+- **禅意花园：**春天樱花盛开，夏天绿叶繁茂，秋天红叶和金叶飘落，冬天是薄雪下的光秃枝条。
+- **海洋、太空、苔原、城市和史前**全年外观不变。
 
-| Spring | Summer | Autumn | Winter |
+| 春 | 夏 | 秋 | 冬 |
 | --- | --- | --- | --- |
-| ![Farm in spring](screenshots/farm-spring.png) | ![Farm in summer](screenshots/farm-summer.png) | ![Farm in autumn](screenshots/farm-autumn.png) | ![Farm in winter](screenshots/farm-winter.png) |
+| ![春天的农场](screenshots/farm-spring.png) | ![夏天的农场](screenshots/farm-summer.png) | ![秋天的农场](screenshots/farm-autumn.png) | ![冬天的农场](screenshots/farm-winter.png) |
 
-Every wallpaper except ocean and space can show rain with splashes, snow, fog or an overcast sky, tinted blue rather
-than white at night. The menu's weather setting:
+除海洋和太空外，每张壁纸都能显示带溅水的雨、雪、雾或阴天，夜晚会染成蓝色而不是白色。菜单中的天气设置：
 
-- **Off** (the default): each wallpaper's own weather, such as the tundra's snowfall and the seasonal showers above.
-- **Local**: the real weather where you are, from [Open-Meteo](https://open-meteo.com) (free, no API key), checked at
-  most every 30 minutes. It needs a place: `/wallpaper location Berlin` or `/wallpaper location 52.52,13.41`, or the
-  `WALLPAPER_LOCATION` variable. Nothing is fetched unless you pick Local, your location is never guessed, and if the
-  lookup fails the sky stays clear.
-- **Clear, Rain, Snow, Fog**: always that weather. `/wallpaper weather overcast` is also available.
+- **关闭**（默认）：各壁纸自带的天气，比如苔原的降雪和上面提到的季节性阵雨。
+- **本地**：你所在位置的真实天气，来自 [Open-Meteo](https://open-meteo.com)（免费、无需 API 密钥），最多每 30 分钟检查一次。它需要一个地点：`/wallpaper location Berlin` 或 `/wallpaper location 52.52,13.41`，或使用 `WALLPAPER_LOCATION` 变量。除非你选择“本地”，否则不会发起任何请求，你的位置也绝不会被推测，如果查询失败天空则保持晴朗。
+- **晴、雨、雪、雾**：始终为对应天气。也可以用 `/wallpaper weather overcast` 表示阴天。
 
-![Farm in the rain](screenshots/farm-rain.png)
+![雨中的农场](screenshots/farm-rain.png)
 
-## Agent reactions
+## Agent 反应
 
-Wallpapers quietly follow what the agent is doing:
+壁纸会静静地跟随 agent 正在做的事：
 
-- **Working:** the scene moves a little faster while any session runs, barely at all when calm.
-- **Done:** when the last running session finishes, the wallpaper's visitor shows up: the whale, a tumbleweed, a
-  toucan (fireflies flashing together at night), a comet, the tractor, a snowy owl, a sailboat, the blimp, the heron or
-  the T. rex.
-- **Error:** after a failed run, dark clouds roll in (in the ocean and jungle the light shafts fade, in space the star
-  dims) and the scene darkens slightly. It clears when the agent works again, or after a couple of minutes.
+- **运行中：**只要有会话在运行，场景就稍微加快；空闲时几乎不动。
+- **完成：**当最后一个正在运行的会话结束时，壁纸的访客登场：鲸鱼、风滚草、巨嘴鸟（夜晚是齐闪的萤火虫）、彗星、拖拉机、雪鸮、帆船、飞艇、苍鹭或霸王龙。
+- **出错：**一次失败的运行之后，乌云会聚拢（在海洋和丛林中光束会淡去，在太空中星体变暗），场景也略微变暗。当 agent 再次工作时，或在几分钟后，它会复原。
 
-## Clicks and surprises
+## 点击与惊喜
 
-With mouse support on, clicking an empty patch of background, away from text, nudges the scene. OpenCode still gets
-every click; dialogs, popups and text are never pokes.
+开启鼠标支持后，点击一块远离文字的空背景会轻推一下场景。OpenCode 仍然会收到每一次点击；对话框、弹窗和文字永远不会被戳动。
 
-| Wallpaper | Click | Very rarely |
+| 壁纸 | 点击 | 极少出现 |
 | --- | --- | --- |
-| `ocean` | Bubbles rise, and the fish, shark and octopus dart away | A little yellow submarine putters past |
-| `desert` | Birds burst up out of the scrub | A roadrunner sprints through and stops to look around |
-| `jungle` | The spider monkey swings harder | A sloth lowers itself down a vine to smile at you |
-| `space` | A shooting star | A starship cruises across the sky |
-| `farm` | The nearest cow looks up and turns toward you | A flying saucer beams up a cow |
-| `tundra` | The penguins hop | A yeti looms out of the snow and waves |
-| `beach` | Gulls take off | A message in a bottle washes up for a while |
-| `city` | Pigeons burst up off the street | A caped superhero flies over the towers |
-| `zen` | A ripple on the pond, or sparrows up out of the garden | A tanuki with a leaf on its head sits by the pond |
-| `prehistoric` | Little feathered dinosaurs flap up out of the ferns | A time machine arrives in a flash and leaves trails of fire |
+| `ocean` | 气泡上升，鱼、鲨鱼和章鱼四散逃走 | 一艘黄色小潜水艇突突驶过 |
+| `desert` | 鸟儿从灌木丛中惊飞而起 | 一只走鹃疾跑而过，停下四处张望 |
+| `jungle` | 蜘蛛猴荡得更用力 | 一只树懒沿藤蔓降下来对你微笑 |
+| `space` | 一颗流星 | 一艘星舰掠过天空 |
+| `farm` | 最近的一头奶牛抬起头转向你 | 一个飞碟把一头奶牛吸上去 |
+| `tundra` | 企鹅蹦跳 | 一个雪人从雪中现身并挥手 |
+| `beach` | 海鸥起飞 | 一个瓶中漂流瓶被冲上岸，停留一会儿 |
+| `city` | 鸽子从街上惊飞而起 | 一位披斗篷的超级英雄飞过塔楼 |
+| `zen` | 池面泛起涟漪，或麻雀从花园中飞起 | 一只头顶叶子的狸猫坐在池边 |
+| `prehistoric` | 长着羽毛的小恐龙扑棱着从蕨类中飞起 | 一台时间机器在一道闪光中抵达，留下火焰尾迹 |
 
-Click reactions that involve animals need the lively or teeming level. The rare events come along about once every
-hour or two of watching, never sooner than half an hour apart, and changing settings doesn't reset the wait.
+涉及动物的点击反应需要活跃或繁盛档。罕见事件大约每一到两个小时的观看才会出现一次，间隔绝不短于半小时，更改设置也不会重置等待时间。
 
-## Power
+## 功耗
 
-Wallpapers animate at 15 frames per second. On **Saver**, the default, they slow to 5 frames per second after 30
-seconds without typing, mouse or agent activity, and pause while the terminal window is in the background (in
-terminals that report focus, such as Ghostty, kitty, iTerm2 and tmux). Any input brings back full speed at once.
-**Smooth** always runs at 15.
+壁纸以每秒 15 帧播放。在**省电**（默认）模式下，30 秒没有键盘、鼠标或 agent 活动后会降到每秒 5 帧，并在终端窗口处于后台时暂停（在能上报焦点的终端中，如 Ghostty、kitty、iTerm2 和 tmux）。任何输入都会立刻恢复全速。**流畅**模式始终以 15 帧运行。
 
-## Terminals
+## 终端
 
-Any truecolor terminal works. Ghostty and kitty get octant characters (2x4 sub-pixels per cell); other terminals get
-quadrant blocks (2x2). These environment variables tune rendering:
+任何真彩色终端都可以。Ghostty 和 kitty 使用八分块字符（每格 2x4 子像素）；其他终端使用四分块（2x2）。以下环境变量可调整渲染：
 
-| Variable | Effect |
+| 变量 | 作用 |
 | --- | --- |
-| `WALLPAPER_PIXELS=1` | In Ghostty or kitty, draw the scene as a real image behind the text instead of characters |
-| `WALLPAPER_SUPERSAMPLE=2` | Smoother edges in character mode, at about 2.5x the CPU |
-| `WALLPAPER_OCTANTS=0` or `1` | Force quadrant or octant characters |
-| `WALLPAPER_LOCATION` | A place or `latitude,longitude` for local weather, if none is set with `/wallpaper location` |
+| `WALLPAPER_PIXELS=1` | 在 Ghostty 或 kitty 中，把场景作为真实图像画在文字背后，而不是用字符 |
+| `WALLPAPER_SUPERSAMPLE=2` | 字符模式下更平滑的边缘，CPU 约增加 2.5 倍 |
+| `WALLPAPER_OCTANTS=0` 或 `1` | 强制使用四分块或八分块字符 |
+| `WALLPAPER_LOCATION` | 用于本地天气的地点或 `纬度,经度`，在未用 `/wallpaper location` 设置时生效 |
 
-## How it works
+## 工作原理
 
-The plugin post-processes each frame OpenCode draws. Cells painted with OpenCode's neutral surface colors are replaced
-by the scene, while colored backgrounds such as diffs and selections are left alone. Text keeps a soft scrim that fades
-the scene toward a dark tint around it. Scenes render in HDR with bloom and tone mapping, then are fitted to two colors
-per character cell. While one look fades into another, both scenes render and blend, scrim included, so only
-transitions cost extra.
+该插件对 OpenCode 绘制的每一帧做后处理。用 OpenCode 中性表面颜色绘制的单元格会被场景替换，而带颜色的背景（如 diff 和选中区域）保持不变。文字保留一层柔和的底色，使场景在它周围淡入一种深色调。场景以 HDR 渲染，带泛光（bloom）和色调映射，然后被适配到每个字符格两种颜色。当一种外观淡入另一种时，两个场景都会渲染并混合（含底色），因此只有过渡会额外消耗性能。
 
-## Make a wallpaper
+## 制作壁纸
 
-[CONTRIBUTING.md](CONTRIBUTING.md) explains how wallpapers work, the dev tools for making them, and how to load
-wallpapers from a package of your own with the plugin's `wallpapers` option.
+[CONTRIBUTING.md](CONTRIBUTING.md) 讲解了壁纸如何工作、用于制作它们的开发工具，以及如何用插件的 `wallpapers` 选项从你自己的包中加载壁纸。
 
-## Gallery
+## 画廊
 
-At teeming, played back at 3x speed:
+繁盛档，以 3 倍速回放：
 
 | | |
 | --- | --- |
-| ![Ocean in motion](screenshots/ocean.gif) | ![Desert in motion](screenshots/desert.gif) |
-| ![Jungle in motion](screenshots/jungle.gif) | ![Space in motion](screenshots/space.gif) |
-| ![Farm in motion](screenshots/farm.gif) | ![Tundra in motion](screenshots/tundra.gif) |
-| ![Beach in motion](screenshots/beach.gif) | ![City in motion](screenshots/city.gif) |
-| ![Zen garden in motion](screenshots/zen.gif) | ![Prehistoric in motion](screenshots/prehistoric.gif) |
+| ![动态的海洋](screenshots/ocean.gif) | ![动态的沙漠](screenshots/desert.gif) |
+| ![动态的丛林](screenshots/jungle.gif) | ![动态的太空](screenshots/space.gif) |
+| ![动态的农场](screenshots/farm.gif) | ![动态的苔原](screenshots/tundra.gif) |
+| ![动态的海滩](screenshots/beach.gif) | ![动态的城市](screenshots/city.gif) |
+| ![动态的禅意花园](screenshots/zen.gif) | ![动态的史前](screenshots/prehistoric.gif) |
 
-| | Day | Sunset | Night |
+| | 白天 | 日落 | 夜晚 |
 | --- | --- | --- | --- |
-| Ocean | ![Ocean by day](screenshots/ocean.png) | ![Ocean at sunset](screenshots/ocean-sunset.png) | ![Ocean at night](screenshots/ocean-night.png) |
-| Desert | ![Desert by day](screenshots/desert.png) | ![Desert at sunset](screenshots/desert-sunset.png) | ![Desert at night](screenshots/desert-night.png) |
-| Jungle | ![Jungle by day](screenshots/jungle.png) | ![Jungle at sunset](screenshots/jungle-sunset.png) | ![Jungle at night](screenshots/jungle-night.png) |
-| Space | ![Space by day](screenshots/space.png) | ![Space at sunset](screenshots/space-sunset.png) | ![Space at night](screenshots/space-night.png) |
-| Farm | ![Farm by day](screenshots/farm.png) | ![Farm at sunset](screenshots/farm-sunset.png) | ![Farm at night](screenshots/farm-night.png) |
-| Tundra | ![Tundra by day](screenshots/tundra.png) | ![Tundra at sunset](screenshots/tundra-sunset.png) | ![Tundra at night](screenshots/tundra-night.png) |
-| Beach | ![Beach by day](screenshots/beach.png) | ![Beach at sunset](screenshots/beach-sunset.png) | ![Beach at night](screenshots/beach-night.png) |
-| City | ![City by day](screenshots/city.png) | ![City at sunset](screenshots/city-sunset.png) | ![City at night](screenshots/city-night.png) |
-| Zen garden | ![Zen garden by day](screenshots/zen.png) | ![Zen garden at sunset](screenshots/zen-sunset.png) | ![Zen garden at night](screenshots/zen-night.png) |
-| Prehistoric | ![Prehistoric by day](screenshots/prehistoric.png) | ![Prehistoric at sunset](screenshots/prehistoric-sunset.png) | ![Prehistoric at night](screenshots/prehistoric-night.png) |
+| 海洋 | ![白天的海洋](screenshots/ocean.png) | ![日落时的海洋](screenshots/ocean-sunset.png) | ![夜晚的海洋](screenshots/ocean-night.png) |
+| 沙漠 | ![白天的沙漠](screenshots/desert.png) | ![日落时的沙漠](screenshots/desert-sunset.png) | ![夜晚的沙漠](screenshots/desert-night.png) |
+| 丛林 | ![白天的丛林](screenshots/jungle.png) | ![日落时的丛林](screenshots/jungle-sunset.png) | ![夜晚的丛林](screenshots/jungle-night.png) |
+| 太空 | ![白天的太空](screenshots/space.png) | ![日落时的太空](screenshots/space-sunset.png) | ![夜晚的太空](screenshots/space-night.png) |
+| 农场 | ![白天的农场](screenshots/farm.png) | ![日落时的农场](screenshots/farm-sunset.png) | ![夜晚的农场](screenshots/farm-night.png) |
+| 苔原 | ![白天的苔原](screenshots/tundra.png) | ![日落时的苔原](screenshots/tundra-sunset.png) | ![夜晚的苔原](screenshots/tundra-night.png) |
+| 海滩 | ![白天的海滩](screenshots/beach.png) | ![日落时的海滩](screenshots/beach-sunset.png) | ![夜晚的海滩](screenshots/beach-night.png) |
+| 城市 | ![白天的城市](screenshots/city.png) | ![日落时的城市](screenshots/city-sunset.png) | ![夜晚的城市](screenshots/city-night.png) |
+| 禅意花园 | ![白天的禅意花园](screenshots/zen.png) | ![日落时的禅意花园](screenshots/zen-sunset.png) | ![夜晚的禅意花园](screenshots/zen-night.png) |
+| 史前 | ![白天的史前](screenshots/prehistoric.png) | ![日落时的史前](screenshots/prehistoric-sunset.png) | ![夜晚的史前](screenshots/prehistoric-night.png) |
 
-## License
+## 许可证
 
 [MIT](LICENSE)

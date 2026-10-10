@@ -1,16 +1,14 @@
-# Changelog
+# 更新日志
 
 ## 0.1.0
 
-First release.
+首个版本。
 
-- Ten animated wallpapers: ocean, desert, jungle, space, farm, tundra, beach, city, zen garden and prehistoric.
-- Three activity levels (calm, lively, teeming) and three times of day (day, sunset, night), plus auto, which follows
-  the local clock and fades between them.
-- Seasons, and weather that is each wallpaper's own, fixed, or the real local weather from Open-Meteo.
-- Agent reactions: livelier while the agent works, a visitor when it finishes, clouds after an error.
-- Clicks on the background and a rare easter egg in every wallpaper.
-- The `/wallpaper` menu with brightness, shuffle, per-project wallpapers and a power saver; crossfades between
-  choices; light theme support.
-- Optional kitty graphics pixel mode.
-- Wallpapers from other packages via the `wallpapers` plugin option, with a typed API at `opencode-wallpapers/api`.
+- 十张动态壁纸：海洋、沙漠、丛林、太空、农场、苔原、海滩、城市、禅意花园和史前。
+- 三档活跃度（静谧、活跃、繁盛）和三个时段（白天、日落、夜晚），外加自动模式，它跟随本地时钟并在它们之间淡入淡出。
+- 季节，以及由各壁纸自带、固定，或来自 Open-Meteo 的真实本地天气。
+- Agent 反应：agent 工作时更活跃，完成时出现一位访客，出错后聚起乌云。
+- 对背景的点击，以及每张壁纸中罕见的彩蛋。
+- 带亮度、随机切换、按项目壁纸和省电模式的 `/wallpaper` 菜单；选项之间的交叉淡入；浅色主题支持。
+- 可选的 kitty 图形像素模式。
+- 通过 `wallpapers` 插件选项加载其他包中的壁纸，并提供位于 `opencode-wallpapers/api` 的类型化 API。

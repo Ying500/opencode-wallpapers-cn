@@ -943,12 +943,12 @@ function flowLava(hdr: Float32Array, index: Int32Array, k: Float32Array, along: 
 
 export const prehistoric: Wallpaper = {
   id: "prehistoric",
-  name: "Prehistoric",
-  description: "A smoking volcano over ferns and cycads, with a T. rex stomping by now and then",
+  name: "史前",
+  description: "蕨类和苏铁上方的冒烟火山，以及偶尔踏步走过的霸王龙",
   activity: {
-    calm: "Volcano, smoke, ferns and cycads",
-    lively: "Adds a browsing sauropod and circling pterosaurs",
-    teeming: "Adds a triceratops herd, dragonflies and a lake with something in it",
+    calm: "火山、烟雾、蕨类和苏铁",
+    lively: "增加觅食的蜥脚类恐龙和盘旋的翼龙",
+    teeming: "增加三角龙群、蜻蜓，以及藏有东西的湖泊",
   },
   scrim: {
     day: [

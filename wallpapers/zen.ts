@@ -1227,12 +1227,12 @@ class Zen extends Canvas {
 
 export const zen: Wallpaper = {
   id: "zen",
-  name: "Zen garden",
-  description: "A koi pond under a red bridge, raked gravel, stone lanterns and falling cherry petals, with a heron now and then",
+  name: "禅意花园",
+  description: "红桥下的锦鲤池、耙过的砾石、石灯笼和飘落的樱花瓣，以及偶尔出现的苍鹭",
   activity: {
-    calm: "Garden, pond ripples, petals and a bamboo fountain",
-    lively: "Adds koi circling under the lily pads",
-    teeming: "Adds more koi, a frog on a lily pad and dragonflies",
+    calm: "花园、池面涟漪、花瓣和竹制水景",
+    lively: "增加在睡莲叶下游弋的锦鲤",
+    teeming: "增加更多锦鲤、睡莲叶上的青蛙和蜻蜓",
   },
   scrim: {
     day: [

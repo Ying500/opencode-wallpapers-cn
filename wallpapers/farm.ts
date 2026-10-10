@@ -883,12 +883,12 @@ function lerpRGB(a: RGB, b: RGB, t: number): RGB {
 
 export const farm: Wallpaper = {
   id: "farm",
-  name: "Farm",
-  description: "Rolling fields with a red barn, a turning windmill and swaying corn, and a tractor now and then",
+  name: "农场",
+  description: "起伏的田野上有红色谷仓、旋转的风车和摇曳的玉米，以及偶尔驶过的拖拉机",
   activity: {
-    calm: "Barn, windmill, fields and corn",
-    lively: "Adds grazing cows and pecking chickens",
-    teeming: "Adds a farmer, pigs in the mud and crows over the corn",
+    calm: "谷仓、风车、田野和玉米",
+    lively: "增加吃草的奶牛和啄食的鸡",
+    teeming: "增加农夫、泥地里的猪和玉米地上空的乌鸦",
   },
   scrim: {
     day: [
