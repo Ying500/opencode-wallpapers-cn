@@ -11,7 +11,7 @@
 需要 OpenCode 2。把仓库克隆到 OpenCode 的插件目录，然后重启 OpenCode：
 
 ```sh
-git clone https://github.com/vaprdev/opencode-wallpapers.git ~/.config/opencode/plugins/wallpapers
+git clone https://github.com/Ying500/opencode-wallpapers-cn.git ~/.config/opencode/plugins/wallpapers
 ```
 
 若想克隆到其他地方，请改为在 `~/.config/opencode/cli.json` 的 `plugins` 中加入它的绝对路径。更新时在克隆目录里执行 `git pull` 即可。

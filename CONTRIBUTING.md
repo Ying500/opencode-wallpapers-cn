@@ -5,7 +5,7 @@
 ## 快速开始
 
 ```sh
-git clone https://github.com/vaprdev/opencode-wallpapers.git && cd opencode-wallpapers
+git clone https://github.com/Ying500/opencode-wallpapers-cn.git && cd opencode-wallpapers-cn
 bun install
 cp wallpapers/template.ts wallpapers/meadow.ts   # 然后把它的 id 改为 "meadow"
 WALLPAPER_MODULES=$PWD/wallpapers/meadow.ts bun dev/snap.ts meadow teeming night 30
