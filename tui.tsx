@@ -2,7 +2,9 @@ import { Plugin } from "@opencode/plugin/tui"
 import { RGBA, TextAttributes } from "@opentui/core"
 import { For, createEffect, createSignal } from "solid-js"
 import { ACTIVITIES, BRIGHTNESSES, POWERS, TIMES, createEngine, parseEvents, type Activity, type AgentEvent, type Brightness, type Power, type Time } from "./src/engine"
+import { zh } from "./src/i18n/zh"
 import { loadWallpapers } from "./src/load"
+import type { Wallpaper } from "./src/wallpaper"
 import { WALLPAPERS } from "./wallpapers"
 
 export default Plugin.define({
@@ -12,8 +14,8 @@ export default Plugin.define({
       initial: { wallpaper: "", activity: "calm", time: "auto", power: "saver" },
     })
     const external = await loadWallpapers(context.options.wallpapers, WALLPAPERS)
-    if (external.skipped.length) context.ui.toast.show({ message: `Skipped wallpapers:\n${external.skipped.join("\n")}`, variant: "error" })
-    const wallpapers = [...WALLPAPERS, ...external.wallpapers]
+    if (external.skipped.length) context.ui.toast.show({ message: zh(`Skipped wallpapers:\n${external.skipped.join("\n")}`), variant: "error" })
+    const wallpapers = [...WALLPAPERS, ...external.wallpapers].map(translated)
     const engine = createEngine(context, { dump: process.env.WALLPAPER_DUMP, dumpFade: process.env.WALLPAPER_DUMP_FADE })
     // Environment overrides for development; they win over the stored choice.
     const pinned = process.env.WALLPAPER
@@ -94,7 +96,7 @@ export default Plugin.define({
     ]
     const simulated = parseEvents(process.env.WALLPAPER_EVENTS).map((e) => setTimeout(() => engine.react(e.event), e.at * 1000))
 
-    const notify = (message: string, variant: "info" | "error" = "info") => context.ui.toast.show({ message, variant })
+    const notify = (message: string, variant: "info" | "error" = "info") => context.ui.toast.show({ message: zh(message), variant })
     // Applies one /wallpaper argument and says what changed.
     const apply = async (arg: string): Promise<{ message: string; error?: true }> => {
       if (arg === "off") {
@@ -243,20 +245,20 @@ export default Plugin.define({
       context.keymap.layer(() => ({
         mode: "modal",
         commands: [
-          { bind: "up", title: "Previous setting", group: "Wallpaper", run: () => move(-1) },
-          { bind: "ctrl+p", title: "Previous setting", group: "Wallpaper", run: () => move(-1) },
-          { bind: "down", title: "Next setting", group: "Wallpaper", run: () => move(1) },
-          { bind: "ctrl+n", title: "Next setting", group: "Wallpaper", run: () => move(1) },
-          { bind: "right", title: "Next value", group: "Wallpaper", run: () => void change(selected(), 1) },
-          { bind: "return", title: "Next value", group: "Wallpaper", run: () => void change(selected(), 1) },
-          { bind: "left", title: "Previous value", group: "Wallpaper", run: () => void change(selected(), -1) },
+          { bind: "up", title: zh("Previous setting"), group: zh("Wallpaper"), run: () => move(-1) },
+          { bind: "ctrl+p", title: zh("Previous setting"), group: zh("Wallpaper"), run: () => move(-1) },
+          { bind: "down", title: zh("Next setting"), group: zh("Wallpaper"), run: () => move(1) },
+          { bind: "ctrl+n", title: zh("Next setting"), group: zh("Wallpaper"), run: () => move(1) },
+          { bind: "right", title: zh("Next value"), group: zh("Wallpaper"), run: () => void change(selected(), 1) },
+          { bind: "return", title: zh("Next value"), group: zh("Wallpaper"), run: () => void change(selected(), 1) },
+          { bind: "left", title: zh("Previous value"), group: zh("Wallpaper"), run: () => void change(selected(), -1) },
         ],
       }))
       return (
         <box gap={1} paddingBottom={1}>
           <box paddingLeft={4} paddingRight={4} flexDirection="row" justifyContent="space-between">
             <text fg={theme.text.base} attributes={TextAttributes.BOLD}>
-              Wallpaper settings
+              {zh("Wallpaper settings")}
             </text>
             <text fg={theme.text.muted} onMouseUp={() => context.ui.dialog.clear()}>
               esc
@@ -279,9 +281,9 @@ export default Plugin.define({
                     }}
                   >
                     <text flexGrow={1} fg={fg()} attributes={active() ? TextAttributes.BOLD : undefined}>
-                      {row.title}
+                      {zh(row.title)}
                     </text>
-                    <text fg={active() ? fg() : theme.text.muted}>{active() ? `‹ ${row.label(row.value())} ›` : row.label(row.value())}</text>
+                    <text fg={active() ? fg() : theme.text.muted}>{active() ? `‹ ${zh(row.label(row.value()))} ›` : zh(row.label(row.value()))}</text>
                   </box>
                 )
               }}
@@ -289,7 +291,7 @@ export default Plugin.define({
           </box>
           <box paddingLeft={4} paddingRight={4}>
             <text fg={theme.text.muted} wrapMode="word">
-              {selected().describe(selected().value())}
+              {zh(selected().describe(selected().value()))}
             </text>
           </box>
           <box paddingLeft={4} flexDirection="row" gap={2}>
@@ -297,13 +299,13 @@ export default Plugin.define({
               <span style={{ fg: theme.text.base }}>
                 <b>↑/↓</b>{" "}
               </span>
-              <span style={{ fg: theme.text.muted }}>setting</span>
+              <span style={{ fg: theme.text.muted }}>{zh("setting")}</span>
             </text>
             <text>
               <span style={{ fg: theme.text.base }}>
                 <b>enter ←/→</b>{" "}
               </span>
-              <span style={{ fg: theme.text.muted }}>change</span>
+              <span style={{ fg: theme.text.muted }}>{zh("change")}</span>
             </text>
           </box>
         </box>
@@ -346,34 +348,35 @@ export default Plugin.define({
           commands: [
             {
               id: "wallpapers.choose",
-              title: "Choose wallpaper",
-              description:
+              title: zh("Choose wallpaper"),
+              description: zh(
                 "Animated scene behind the UI. Args: wallpaper id, off, calm, lively, teeming, day, sunset, night, auto, subtle, normal, vivid, saver, smooth",
-              group: "Wallpapers",
+              ),
+              group: zh("Wallpapers"),
               palette: true,
               slash: { name: "wallpaper", arguments: true },
               run,
             },
             {
               id: "wallpapers.off",
-              title: "Turn off wallpaper",
-              group: "Wallpapers",
+              title: zh("Turn off wallpaper"),
+              group: zh("Wallpapers"),
               palette: true,
               run: () => run("off"),
             },
             {
               id: "wallpapers.activity",
-              title: "Cycle wallpaper activity",
-              description: "Calm, lively, teeming",
-              group: "Wallpapers",
+              title: zh("Cycle wallpaper activity"),
+              description: zh("Calm, lively, teeming"),
+              group: zh("Wallpapers"),
               palette: true,
               run: () => cycle(ACTIVITIES, activity()),
             },
             {
               id: "wallpapers.time",
-              title: "Cycle wallpaper time of day",
-              description: "Auto, day, sunset, night",
-              group: "Wallpapers",
+              title: zh("Cycle wallpaper time of day"),
+              description: zh("Auto, day, sunset, night"),
+              group: zh("Wallpapers"),
               palette: true,
               run: () => cycle(["auto", ...TIMES] as const, timeSetting()),
             },
@@ -395,6 +398,21 @@ export default Plugin.define({
 
 function capitalize(text: string) {
   return text[0].toUpperCase() + text.slice(1)
+}
+
+// A wallpaper with its name, description and activity lines in Chinese for these menus. Copies, so the builtin export
+// and any wallpaper package the user passed in stay as they are.
+function translated(wallpaper: Wallpaper): Wallpaper {
+  return {
+    ...wallpaper,
+    name: zh(wallpaper.name),
+    description: zh(wallpaper.description),
+    activity: {
+      calm: zh(wallpaper.activity.calm),
+      lively: zh(wallpaper.activity.lively),
+      teeming: zh(wallpaper.activity.teeming),
+    },
+  }
 }
 
 // Seconds auto takes to fade into the next time of day when the clock crosses into it.
