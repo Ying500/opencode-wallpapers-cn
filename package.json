@@ -11,13 +11,13 @@
     "animation",
     "opentui"
   ],
-  "homepage": "https://github.com/vaprdev/opencode-wallpapers#readme",
+  "homepage": "https://github.com/Ying500/opencode-wallpapers-cn#readme",
   "bugs": {
-    "url": "https://github.com/vaprdev/opencode-wallpapers/issues"
+    "url": "https://github.com/Ying500/opencode-wallpapers-cn/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vaprdev/opencode-wallpapers.git"
+    "url": "git+https://github.com/Ying500/opencode-wallpapers-cn.git"
   },
   "type": "module",
   "license": "MIT",
@@ -35,14 +35,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "build": "bun dev/build.ts",
-    "prepack": "bun run build",
-    "typecheck": "tsc --noEmit",
-    "check": "bun dev/check.ts",
-    "screenshots": "bun dev/screenshots.ts",
-    "screenshots:update": "bun dev/screenshots.ts --update"
-  },
   "peerDependencies": {
     "@opentui/core": ">=0.5.14",
     "@opentui/solid": ">=0.5.14",
@@ -58,13 +50,5 @@
     "solid-js": {
       "optional": true
     }
-  },
-  "devDependencies": {
-    "@opencode/plugin": "2.0.25",
-    "@opentui/core": "0.5.14",
-    "@opentui/solid": "0.5.14",
-    "@types/bun": "latest",
-    "solid-js": "1.9.9",
-    "typescript": "^5.9.0"
   }
 }
